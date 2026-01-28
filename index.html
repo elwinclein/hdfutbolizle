@@ -2,41 +2,61 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Canlı Spor Ekranı - Yasal Yayın Portalı</title>
+    <title>Canlı Maç Merkezi</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <style>
-        body { font-family: sans-serif; background: #0f0f0f; color: white; margin: 0; display: flex; height: 100vh; }
-        #sidebar { width: 250px; background: #1a1a1a; border-right: 2px solid #333; padding: 15px; }
-        #main-content { flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .channel-btn { 
-            width: 100%; padding: 15px; margin-bottom: 10px; background: #27ae60; 
-            border: none; color: white; cursor: pointer; border-radius: 5px; font-weight: bold;
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #050505; color: white; margin: 0; }
+        .header { background: #1f1f1f; padding: 15px; text-align: center; border-bottom: 3px solid #e74c3c; }
+        .main-container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .player-box { flex: 2; min-width: 600px; margin: 10px; }
+        .playlist { flex: 1; min-width: 300px; background: #1a1a1a; padding: 15px; border-radius: 8px; }
+        .channel-item { 
+            display: flex; align-items: center; padding: 10px; margin-bottom: 10px; 
+            background: #2c3e50; border-radius: 5px; cursor: pointer; transition: 0.3s;
         }
-        .channel-btn:hover { background: #2ecc71; }
-        .video-wrapper { width: 100%; max-width: 900px; aspect-ratio: 16/9; background: #000; }
-        iframe { width: 100%; height: 100%; border: none; }
-        h2 { color: #f1c40f; }
+        .channel-item:hover { background: #34495e; transform: scale(1.02); }
+        .channel-icon { width: 40px; height: 40px; background: #e74c3c; border-radius: 50%; margin-right: 15px; }
+        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #333; }
     </style>
 </head>
 <body>
 
-<div id="sidebar">
-    <h3>Canlı Kanallar</h3>
-    <button class="channel-btn" onclick="playVideo('pS9f_o_8H_Y')">TRT Spor</button>
-    <button class="channel-btn" onclick="playVideo('pS9f_o_8H_Y')">A Spor Canlı</button>
-    <button class="channel-btn" onclick="playVideo('yayın_id_2')">Haber Global Spor</button>
+<div class="header">
+    <h1>STADYUM CANLI YAYIN PORTALI</h1>
 </div>
 
-<div id="main-content">
-    <h2>Maç Yayını Paneli</h2>
-    <div class="video-wrapper">
-        <iframe id="player" src="https://www.youtube.com/embed/pS9f_o_8H_Y" allowfullscreen></iframe>
+<div class="main-container">
+    <div class="player-box">
+        <iframe id="mainPlayer" src="https://www.youtube.com/embed/live_stream?channel=UC8CSu7N6Dba7-W7_7_J9y6A" allowfullscreen></iframe>
+        <h3 id="playingTitle">Şu an İzlenen: TRT Spor</h3>
     </div>
-    <p>Not: Yayınlar doğrudan resmi kanalların YouTube hesaplarından çekilmektedir.</p>
+
+    <div class="playlist">
+        <h3>Kanal Listesi</h3>
+        
+        <div class="channel-item" onclick="changeChannel('UC8CSu7N6Dba7-W7_7_J9y6A', 'TRT Spor')">
+            <div class="channel-icon"></div>
+            <span>TRT Spor Canlı</span>
+        </div>
+
+        <div class="channel-item" onclick="changeChannel('UCmS8F_idUatH_663-H7AnpA', 'A Spor')">
+            <div class="channel-icon"></div>
+            <span>A Spor Canlı</span>
+        </div>
+
+        <div class="channel-item" onclick="changeChannel('UC9_6_S9U6_I', 'Haber Global')">
+            <div class="channel-icon"></div>
+            <span>Haber Global Spor</span>
+        </div>
+    </div>
 </div>
 
 <script>
-    function playVideo(videoId) {
-        document.getElementById('player').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    function changeChannel(id, name) {
+        // YouTube kanal ID'sini kullanarak canlı yayını yükler
+        const player = document.getElementById('mainPlayer');
+        player.src = "https://www.youtube.com/embed/live_stream?channel=" + id;
+        document.getElementById('playingTitle').innerText = "Şu an İzlenen: " + name;
     }
 </script>
 
