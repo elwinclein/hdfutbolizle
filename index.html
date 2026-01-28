@@ -2,43 +2,43 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futbol Analiz ve Eğitim Paneli</title>
+    <title>Canlı Spor Ekranı - Yasal Yayın Portalı</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: white; margin: 0; }
-        .container { display: flex; height: 100vh; }
-        .video-section { flex: 3; background: #000; display: flex; align-items: center; justify-content: center; }
-        .sidebar { flex: 1; background: #2c3e50; padding: 20px; overflow-y: auto; border-left: 4px solid #27ae60; }
-        iframe { width: 90%; height: 80%; border: none; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        h2 { color: #27ae60; border-bottom: 1px solid #555; padding-bottom: 10px; }
-        .analysis-note { background: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9em; }
-        .tag { color: #f1c40f; font-weight: bold; }
+        body { font-family: sans-serif; background: #0f0f0f; color: white; margin: 0; display: flex; height: 100vh; }
+        #sidebar { width: 250px; background: #1a1a1a; border-right: 2px solid #333; padding: 15px; }
+        #main-content { flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .channel-btn { 
+            width: 100%; padding: 15px; margin-bottom: 10px; background: #27ae60; 
+            border: none; color: white; cursor: pointer; border-radius: 5px; font-weight: bold;
+        }
+        .channel-btn:hover { background: #2ecc71; }
+        .video-wrapper { width: 100%; max-width: 900px; aspect-ratio: 16/9; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
+        h2 { color: #f1c40f; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="video-section">
-        <iframe src="https://www.youtube.com/embed/LIVE_STREAM_ID" 
-                title="Canlı Maç Yayını" 
-                allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="sidebar">
-        <h2>Taktik Analiz Notları</h2>
-        
-        <div class="analysis-note">
-            <span class="tag">Dakika 12:</span> Rakip takım 4-4-2 dizilişinden 3-5-2'ye dönüyor. Kanat beklerinin bindirmelerine dikkat edin.
-        </div>
-
-        <div class="analysis-note">
-            <span class="tag">Savunma:</span> Alan savunmasında bloklar arası mesafe 10 metrenin üzerine çıkmamalı.
-        </div>
-
-        <button onclick="alert('Not Kaydedildi!')" style="width:100%; padding:10px; cursor:pointer; background:#27ae60; border:none; color:white; font-weight:bold;">Analiz Notu Ekle</button>
-    </div>
+<div id="sidebar">
+    <h3>Canlı Kanallar</h3>
+    <button class="channel-btn" onclick="playVideo('pS9f_o_8H_Y')">TRT Spor</button>
+    <button class="channel-btn" onclick="playVideo('pS9f_o_8H_Y')">A Spor Canlı</button>
+    <button class="channel-btn" onclick="playVideo('yayın_id_2')">Haber Global Spor</button>
 </div>
+
+<div id="main-content">
+    <h2>Maç Yayını Paneli</h2>
+    <div class="video-wrapper">
+        <iframe id="player" src="https://www.youtube.com/embed/pS9f_o_8H_Y" allowfullscreen></iframe>
+    </div>
+    <p>Not: Yayınlar doğrudan resmi kanalların YouTube hesaplarından çekilmektedir.</p>
+</div>
+
+<script>
+    function playVideo(videoId) {
+        document.getElementById('player').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    }
+</script>
 
 </body>
 </html>
